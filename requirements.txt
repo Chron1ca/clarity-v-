@@ -1,0 +1,20 @@
+# Core
+faster-whisper>=1.0.0
+sounddevice>=0.4.6
+numpy>=1.24.0
+
+# Wake word
+openwakeword>=0.6.0
+
+# OS interaction — cross-platform
+pyperclip>=1.8.2
+pynput>=1.7.6                                 # listener + synthesizer, Win/Linux/Mac
+
+# Windows-specific niceties (no-op elsewhere)
+pywin32>=306; platform_system == "Windows"
+
+# HTTP (only used by the optional U.Plane integration; safe to keep)
+requests>=2.31.0
+
+# UI: settings window + glow bar + audio cues
+PySide6>=6.6.0

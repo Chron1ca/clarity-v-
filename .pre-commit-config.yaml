@@ -1,0 +1,42 @@
+# Pre-commit hooks for Clarity.V.
+#
+# What this is, in plain English:
+# Every time someone (you or a contributor) runs `git commit`, these
+# checks run automatically on the files being committed. If anything
+# fails, the commit is blocked. This catches problems 30 seconds before
+# they'd be caught by the GitHub CI, and saves a round-trip.
+#
+# Setup (one-time, after cloning the repo):
+#     pip install pre-commit
+#     pre-commit install
+#
+# After that, hooks run on every `git commit` with no further effort.
+# To run them manually against all files:
+#     pre-commit run --all-files
+#
+# To skip just this once (in an emergency — don't make a habit):
+#     git commit --no-verify
+
+repos:
+  # Ruff — lint + format. Same checks as the CI workflow.
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.15.14
+    hooks:
+      - id: ruff
+        args: [--fix]
+      - id: ruff-format
+
+  # Standard hygiene hooks.
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-json
+      - id: check-toml
+      - id: check-added-large-files
+        args: ["--maxkb=2000"]   # 2 MB cap on any single commit
+      - id: check-merge-conflict
+      - id: mixed-line-ending
+        args: ["--fix=lf"]

@@ -1,0 +1,17 @@
+{
+  "models": [
+    {
+      "name": "cv_go",
+      "model_path": "models/wake_words/cv_go.onnx",
+      "threshold": 0.472,
+      "role": "start"
+    },
+    {
+      "name": "cv_over",
+      "model_path": "models/wake_words/cv_over.onnx",
+      "threshold": 0.483,
+      "role": "stop"
+    }
+  ],
+  "cooldown_seconds": 0.5
+}

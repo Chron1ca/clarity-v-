@@ -1,0 +1,47 @@
+# Wake-word training requirements.
+# Install in a SEPARATE venv from the runtime — versions here are
+# pinned to combinations that actually work on Windows + CUDA, which
+# is fragile.
+#
+#   python -m venv .venv-train
+#   .venv-train\Scripts\activate
+#   pip install -r tools/training/requirements.txt
+#
+# Then for the OpenWakeWord source itself:
+#   pip install -e <openwakeword-clone> --no-deps
+
+# Sample generation (TTS variety)
+edge-tts>=7.0.0          # Microsoft Edge TTS — 200+ voices, multilang
+piper-tts>=1.2.0         # Local TTS, reproducible
+piper-phonemize-fix>=1.2.0
+
+# Audio I/O + augmentation
+librosa>=0.10.0
+soundfile>=0.12.0
+scipy>=1.10.0
+numpy>=1.24.0,<2.0       # OpenWakeWord training internals assume numpy < 2
+
+# OpenWakeWord training stack (the brittle part — versions matter)
+# OpenWakeWord itself: install via `pip install -e ./openwakeword --no-deps`
+mutagen==1.47.0
+torchinfo==1.8.0
+torchmetrics==1.2.0
+speechbrain==0.5.14
+audiomentations==0.33.0
+torch_audiomentations==0.11.0
+acoustics==0.2.6
+onnxruntime==1.22.1
+onnx==1.19.1
+onnxsim
+onnx-graphsurgeon
+sng4onnx
+pronouncing==0.2.0
+datasets==2.14.6
+deep-phonemizer==0.0.19
+webrtcvad
+
+# Used by training scripts in this directory
+requests>=2.31.0
+tqdm>=4.66.0
+sounddevice>=0.4.6
+PyYAML>=6.0

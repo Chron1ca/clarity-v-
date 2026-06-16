@@ -1,0 +1,33 @@
+{
+  "name": "Python",
+  "description": "Python coding dictionary. Phonetic fixes for code-mode dictation + macros for common boilerplate.",
+  "extends": "Default",
+  "substitutions": {
+    "Def Func": "def function",
+    "Import Oss": "import os",
+    "System Exit": "sys.exit",
+    "Deaf": "def",
+    "El If": "elif",
+    "Self Dot": "self.",
+    "Double Underscore": "__"
+  },
+  "macros": {
+    "_comment": "Say the key phrase, get the template pasted.",
+    "Def Func": "def function_name(args):\n    pass",
+    "Define Function With Docstring": "def function_name(args):\n    \"\"\"\n    \n    \"\"\"\n    pass",
+    "Try Block": "try:\n    pass\nexcept Exception as e:\n    pass",
+    "Try Block With Finally": "try:\n    pass\nexcept Exception as e:\n    pass\nfinally:\n    pass",
+    "Main Block": "if __name__ == \"__main__\":\n    main()",
+    "Class Block": "class ClassName:\n    def __init__(self):\n        pass",
+    "For Loop": "for i in range(10):\n    pass",
+    "While Loop": "while True:\n    pass",
+    "With Open": "with open(\"path\", \"r\") as f:\n    pass",
+    "List Comprehension": "[x for x in iterable]",
+    "Dictionary Comprehension": "{k: v for k, v in iterable}",
+    "Import Standard": "import os\nimport sys\nfrom pathlib import Path",
+    "Type Hint Optional": "Optional[Any]",
+    "Type Hint List": "List[Any]",
+    "Type Hint Dict": "Dict[str, Any]"
+  },
+  "voice_commands": {}
+}

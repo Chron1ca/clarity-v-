@@ -1,0 +1,50 @@
+[project]
+name = "clarity-v"
+version = "0.1.0"
+description = "Local-first voice dictation. Free, open, fork-friendly."
+authors = [{ name = "Chron1ca (Gonçalo Parreira)" }]
+license = { text = "MIT" }
+readme = "README.md"
+requires-python = ">=3.10"
+
+[tool.ruff]
+# Black's line length is the de-facto modern standard; ruff matches it.
+line-length = 88
+target-version = "py310"
+
+# Apply lint + format consistently across the tree.
+src = ["src", "tests", "tools"]
+
+[tool.ruff.lint]
+# Enable the standard rule sets we care about. We're explicit so nobody
+# wonders why something does or doesn't fire.
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # isort (import ordering)
+    "B",   # flake8-bugbear (real-world gotchas)
+    "UP",  # pyupgrade (modern syntax)
+    "SIM", # flake8-simplify
+]
+# A few we don't enforce — each with a reason:
+ignore = [
+    "E501",  # line too long — Black/ruff format-on-save handles real cases
+    "B008",  # function call in default arg — common for dataclasses
+    "SIM108",# ternary preference — explicit if/else is clearer here
+]
+
+[tool.ruff.lint.per-file-ignores]
+# Tools and tests may import the world for setup convenience.
+"tools/**" = ["E402", "I001"]   # sys.path manipulation precedes imports
+"tests/**" = ["E402", "I001"]   # same pattern
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+line-ending = "auto"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
+addopts = "-v --tb=short"

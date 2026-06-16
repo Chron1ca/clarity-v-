@@ -1,0 +1,75 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual envs (root-anchored so any project-local venv folder matches,
+# but ui_web/lib/ and similar are not affected)
+/.venv/
+/.venv-train/
+/venv/
+/env/
+
+# Build artifacts (root-anchored — leaves src/.../lib/ and similar alone)
+/build/
+/dist/
+/develop-eggs/
+/downloads/
+/eggs/
+/.eggs/
+/lib/
+/lib64/
+/parts/
+/sdist/
+/var/
+/wheels/
+*.egg-info/
+*.egg
+
+# Tooling caches
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+.cache/
+
+# Local dev workspace
+/scratch/
+
+# Training-only data — the 17.5 GB pipeline output and the training workspace.
+# The shipped models/wake_words/*.onnx files are explicitly NOT ignored.
+models/training/
+models/training_data/
+*.pt
+*.bin
+
+# User-local state (per-Person profiles, calibrated configs, user dictionaries)
+user_data/
+dictionaries/user_*.json
+profiles/
+
+# Logs
+logs/
+*.log
+
+# OS / IDE
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Local config
+.env
+config.local.json
+
+# Packaging output — we ship installers as GitHub release assets, never commit.
+*.msi
+*.dmg
+*.deb
+*.rpm
+/release/
+
+# Claude Code local settings
+.claude/

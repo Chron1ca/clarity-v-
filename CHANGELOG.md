@@ -5,13 +5,39 @@ All notable changes to Clarity.V.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versioning follows [SemVer](https://semver.org/).
 
-## [Unreleased] — v0.1.0 (in progress)
+## [0.1.0] — 2026-06-16
 
 The first public release. Local-first voice dictation for the desktop.
 
 ### Added
 
-- **Dictation engine** — Whisper-powered local STT with state machine
+- **Mid-dictation voice controls — expanded vocabulary**: the Voice
+  Editing tab now exposes the full set of in-flight formatting commands
+  in the dropdown — strikethrough, code block, blockquote, bullet list,
+  numbered list, headings (H1/H2/H3), indent in/out, link, plus the
+  layout commands new_line and new_paragraph that were already in the
+  engine. Default.json untouched — opt-in only.
+- **Symbol spacing hygiene**: quotes hug content (`" hello "` → `"hello"`),
+  `$` left-attaches to digits (`$ 50` → `$50`), `%` right-attaches to
+  digits (`50 %` → `50%`). Applied universally to every transcription,
+  not just ones with voice transforms.
+- **Trigger-adjacent punctuation strip**: Whisper-injected pause-tics
+  around voice triggers (the `_._` artifact around italic, the `.` at
+  the start of a new line after `new paragraph`) are now stripped at
+  the moment the trigger fires, preserving the separator space so
+  surrounding text doesn't glue together.
+- **Personalize-for-your-voice wake-word flow**: a new path in Voice
+  Activation runs `calibrate.py` directly — record the wake word 5
+  times + 10 seconds of normal speech, the threshold gets calibrated
+  to your audio. About 60 seconds, no downloads, no training stack.
+  Replaces the "Enhance" button (which used to trigger the heavy
+  17.5 GB retrain). The full retrain path remains available for
+  creating new wake words from scratch.
+- **Multi-line macro template editor**: the dictionary tab's
+  template-add field is now a textarea that respects Enter and
+  preserves indentation, so multi-line templates can be authored
+  directly in the UI.
+- - **Dictation engine** — Whisper-powered local STT with state machine
   (idle → recording → processing → commit-waiting → idle), silence
   detection for natural stop, wake-word re-fire as alternative stop.
 - **Auto language detection** — `language=None` by default; Whisper Medium
